@@ -1,12 +1,54 @@
 $backgroundColor: rgb(10, 17, 26);
+$headerColor: rgb(75, 179, 253);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto&display=swap');
 
 body {
   background-color: $backgroundColor;
   color: white;
 }
 
+.title {
+  color: $headerColor;
+  font-size: 30px;
+
+}
+
 .row1,
 .row2 {
   width: 70%;
   margin: auto;
+  font-family: 'Roboto', Georgia, 'Times New Roman', Times, serif;
+  border: 2px solid $headerColor;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  padding: 15px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid $headerColor;
+}
+
+th {
+  font-size: 23px;
+}
+
+hr {
+  width: 85%;
+}
+
+.name {
+  width: 40%;
+  height: 20px;
 }
