@@ -1,5 +1,13 @@
 body {
-  background-color: red;
+  background-color: rgb(10, 17, 26);
+  color: white;
 }
+
+.row1,
+.row2 {
+  width: 70%;
+  margin: auto;
+}
+
 
 /*# sourceMappingURL=styles.css.map */
