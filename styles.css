@@ -11,7 +11,7 @@ body {
 
 .row1,
 .row2 {
-  width: 85%;
+  width: 90%;
   margin: 2em auto 3em;
 }
 
@@ -21,6 +21,7 @@ body {
   font-weight: bold;
   color: var(--header-color);
 }
+
 
 fieldset {
   border-color: var(--header-color);
@@ -33,11 +34,11 @@ label {
   font-family: var(--default-family);
 }
 
-
 .clockin-options,
 .clockout-options {
   width: 100%;
   font-size: 20px;
+  border-radius: 5px;
 }
 
 .employee-name {
@@ -47,7 +48,11 @@ label {
 .name {
   box-sizing: border-box;
   width: 100%;
-  height: 23px;
+  height: 25px;
+  font-size: 22px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
 }
 
 .top-row {
@@ -70,7 +75,7 @@ label {
 .checks {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .submit {
@@ -96,41 +101,39 @@ label {
   line-height: 1.1;
   display: grid;
   grid-template-columns: 1em auto;
-  gap: 0.5em;
-}
-
-.row2 {
-  text-align: center;
+  gap: 0.1em;
 }
 
 .table-container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+  overflow-x: auto;
 }
 
-.generated-schedule {
-  border: 4px solid var(--body-color);
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 2px solid var(--header-color);
   border-collapse: collapse;
 }
 
-td,
 th {
-  border: 2px solid #dddddd;
-  text-align: left;
-  padding: 30px;
   font-size: 30px;
+  padding: 0.5em;
   font-family: var(--default-family);
-}
-
-th {
   color: var(--header-color);
-  background-color: var(--body-color);
 }
 
 td {
+  font-size: 30px;
+  padding: 0.5em;
+  font-family: var(--default-family);
   color: var(--body-color);
+  text-align: center;
 }
+
 
 @media only screen and (max-width: 850px) {
   .top-row {
@@ -154,5 +157,9 @@ td {
     display: grid;
     grid-template-columns: 1em 1em;
     gap: 0.5em;
+  }
+
+  .new-employee {
+    width: 85%;
   }
 }

@@ -17,11 +17,11 @@
         <div class="top-row">
           <div class="employee-name">
             <label for="fullname">Name:</label><br>
-            <input class="name" type="text" id="fullname" required>
+            <input class="name" type="text" id="fullname" placeholder="Full Name..." autocomplete="off" required>
           </div>
           <div class="earliest-available">
             <label for="in">Earliest Available: </label>
-            <select class="clockin-options" id="in" required>
+            <select class="clockin-options" id="in" autocomplete="off" required>
               <option value="">Select...</option>
               <option value="7">7 AM</option>
               <option value="8">8 AM</option>
@@ -38,7 +38,7 @@
           </div>
           <div class="latest-available">
             <label for="out">Latest Available: </label>
-            <select class="clockout-options" id="out" required>
+            <select class="clockout-options" autocomplete="off" id="out" required>
               <option value="">Select...</option>
               <option value="7">7 AM</option>
               <option value="8">8 AM</option>
@@ -87,7 +87,7 @@
             </div>
           </div>
           <div class="submit">
-            <input type="submit" value="Generate Random Schedule" class="new-employee">
+            <input type="submit" value="Generate Schedule" class="new-employee">
           </div>
         </div>
       </form>
@@ -95,19 +95,22 @@
   </div>
   <div class="row2">
     <h1 class="title">Generated Schedule</h1>
-    <div class="table-container">
-      <table class="generated-schedule">
-        <th>Employee</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-        <th>Sunday</th>
+    <div class="table-container" id="table-title">
+      <table>
+        <tr>
+          <th>Employee</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
       </table>
     </div>
   </div>
+  <script src="main.js"></script>
 </body>
 
 </html>
