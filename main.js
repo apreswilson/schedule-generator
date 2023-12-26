@@ -55,8 +55,19 @@ $('.criteria').submit(function (event) {
 
   for (let i = 0; i < daysOfWeek.length; i++) {
     if (daysAvailable.indexOf(daysOfWeek[i]) !== -1) {
+      //When they clock out
       let upperBound = Math.floor(Math.random() * (latestAvailable - earliestAvailable + 1) + earliestAvailable);
+      //When they clock in
       let lowerBound = Math.floor(Math.random() * (upperBound - earliestAvailable + 1) + earliestAvailable);
+      
+      //They must work minimum 3 hours
+      if (upperBound === lowerBound) {
+        upperBound += 4;
+      }
+
+      if (upperBound - lowerBound < 4) {
+        upperBound = lowerBound + 4;
+      }
 
       if (upperBound >= 12) {
         upperBound = String(upperBound - 11) + " PM";
