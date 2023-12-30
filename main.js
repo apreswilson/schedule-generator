@@ -10,6 +10,8 @@ $('.criteria').submit(function (event) {
   const employeeName = $('#fullname').val();
   const earliestAvailable = Number($('#in').val());
   const latestAvailable = Number($('#out').val());
+
+  console.log(typeof earliestAvailable, typeof latestAvailable)
   let daysAvailable = [];
 
   $('.day-checkbox').each(function () {
@@ -20,7 +22,12 @@ $('.criteria').submit(function (event) {
   
   //Error handling
   if (earliestAvailable > latestAvailable) {
-    alert("Earliest time must be before latest time")
+    alert("Earliest time must be before latest time");
+    return;
+  }
+
+  if ((latestAvailable - earliestAvailable) < 3) {
+    alert("Minimum of three hour shifts required on days available");
     return;
   }
 
@@ -53,35 +60,39 @@ $('.criteria').submit(function (event) {
     "Sunday": {},
   };
 
+  //TODO: FIX THE CONDITIONALS AND NUMBER GENERATION PROBABLY
   for (let i = 0; i < daysOfWeek.length; i++) {
     if (daysAvailable.indexOf(daysOfWeek[i]) !== -1) {
-      //When they clock out
-      let upperBound = Math.floor(Math.random() * (latestAvailable - earliestAvailable + 1) + earliestAvailable);
-      //When they clock in
-      let lowerBound = Math.floor(Math.random() * (upperBound - earliestAvailable + 1) + earliestAvailable);
-      
-      //They must work minimum 3 hours
-      if (upperBound === lowerBound) {
-        upperBound += 4;
+      let clockOutTime = Math.floor(Math.random() * (formData.latestAvailable - formData.earliestAvailable + 1) + formData.earliestAvailable);
+      let clockInTime =  Math.floor(Math.random() * (clockOutTime - formData.earliestAvailable + 1) + formData.earliestAvailable);
+
+      //Minimum 3 hour shifts
+      if (clockOutTime - clockInTime === 0) {
+        clockOutTime +=3;
+      } else if (clockOutTime - clockInTime === 1) {
+        clockOutTime += 2;
+      } else if (clockOutTime - clockInTime === 2) {
+        clockOutTime ++;
       }
 
-      if (upperBound - lowerBound < 4) {
-        upperBound = lowerBound + 4;
-      }
-
-      if (upperBound >= 12) {
-        upperBound = String(upperBound - 11) + " PM";
+      //Convert time to string
+      if (clockOutTime > 12) {
+        clockOutTime = String(clockOutTime - 12) + " PM";
+      } else if (clockOutTime === 12) {
+        clockOutTime = String(clockOutTime) + " PM";
       } else {
-        upperBound = String(upperBound) + " AM";
+        clockOutTime = String(clockOutTime) + " AM";
       }
 
-      if (lowerBound >= 12)  {
-        lowerBound = String(lowerBound - 11) + " PM";
+      if (clockInTime > 12) {
+        clockInTime = String(clockInTime - 12) + " PM";
+      } else if (clockInTime === 12) {
+        clockOutTime = String(clockInTime) + " PM";
       } else {
-        lowerBound = String(lowerBound) + " AM";
+        clockInTime = String(clockInTime) + " AM";
       }
 
-      generatedSchedule[daysOfWeek[i]] = [lowerBound, upperBound];
+      generatedSchedule[daysOfWeek[i]] = [clockInTime, clockOutTime];
     } else {
       generatedSchedule[daysOfWeek[i]] = [" ", " "];
     }
